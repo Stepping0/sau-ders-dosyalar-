@@ -1,0 +1,92 @@
+#include <iostream>
+#include <conio.h>
+#include <vector>
+#include "Unit.h"
+using namespace std;
+
+class Land {    
+private:
+    int i, j, f, x, y, c, enemyX, enemyY;
+
+    int n = 0;
+    char** a = new char* [n];
+public:
+    int r = 0;
+    bool gameOver = false;
+    Land()
+    {
+        std::cout << "Constructor called. \n";
+    }
+    int Createinput()
+    {
+        std::cout << "Input the size of level: ";
+        std::cin >> n;
+        while (n <= 1)
+        {
+            std::cout << "Error, input another number: ";
+            std::cin >> n;
+        }
+        std::cout << "Input number of units: ";
+        cin>>c;
+        while (c <= 1)
+        {
+            std::cout << "Error, input another number: ";
+            std::cin >> c;
+        }
+        return n, c;
+    }
+    void Creator()
+    {
+        x = rand()%n-1;
+        y = rand()%n-1;
+        std::cout << "LEVEL 1" << std::endl;
+        for (int i = 0; i < n; i++)
+        {
+            a[i] = new char[n];
+        }
+
+    }
+    void Filler()
+    {
+        x = rand() % n-1;
+        y = rand() % n-1;
+        enemyX = rand() % n-1;
+        enemyY = rand() % n-1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++)
+            {
+                f = rand() % 100;
+                if (f <= 70)
+                    a[i][j] = *".";
+                else
+                    a[i][j] = *"#";
+                if (i == y && j == x)
+                    cout << "&";
+                if (i == enemyY && j == enemyX)
+                    cout << "%";
+                else 
+                    std::cout << a[i][j];
+            }
+            std::cout << std::endl;
+        }
+    }
+    void Update() {
+        system("cls");
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (i == y && j == x)
+                    cout << "&";
+                if (i == enemyY && j == enemyX)
+                    cout << "%";
+                else
+                std::cout << a[i][j];
+            }
+            std::cout << std::endl;
+        }
+    }
+    void Movement(){
+
+    }   
+};
